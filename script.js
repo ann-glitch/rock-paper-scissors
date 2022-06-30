@@ -55,3 +55,8 @@ for (let i = 0; i < 5; i++) {
   console.log(`Your Score: ${playerScore}`);
   console.log(`Computer Score: ${computerScore}`);
 }
+if (computerScore < 3) {
+  console.log("PLAYER WINS");
+} else {
+  console.log("COMPUTER WINS");
+}
