@@ -49,7 +49,7 @@ function game(computerSelection, playerSelection) {
 
 //  a for loop used to play 5 rounds of the game.
 for (let i = 0; i < 5; i++) {
-  const playerSelection = prompt("Enter your play!").toLowerCase();
+  const playerSelection = prompt("Enter your play").toLowerCase();
   const computerSelection = computerPlay(options);
   console.log(game(computerSelection, playerSelection));
   console.log(`Your Score: ${playerScore}`);
@@ -57,9 +57,9 @@ for (let i = 0; i < 5; i++) {
 }
 
 // an if statement to indicate who wins at the end.
-if (computerScore < 3) {
+if (computerScore < playerScore) {
   console.log("PLAYER WINS!");
-} else if (playerScore < 3) {
+} else if (playerScore < computerScore) {
   console.log("COMPUTER WINS!");
 } else {
   console.log("ENDED IN A TIE!");
