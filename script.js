@@ -1,9 +1,11 @@
+//DOM
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
+
 //helper functions
 let computerScore = 0;
 let playerScore = 0;
-let win = "YOU WIN!";
-let lose = "YOU LOSE!";
-let tie = "IT'S A TIE!";
 const options = ["rock", "paper", "scissors"];
 
 // a function that randomly returns rock, paper or scissors
@@ -13,6 +15,10 @@ function computerPlay(options) {
 
 // a function that takes a computer and player input and returns the winner of the round and increase scores too.
 function game(computerSelection, playerSelection) {
+  let win = `YOU WIN ${playerSelection} beats ${computerSelection}`;
+  let lose = `YOU LOSE! ${computerSelection} beats ${playerSelection}`;
+  let tie = "IT'S A TIE! YOU BOTH CHOSE THE SAME THING";
+
   if (playerSelection === "rock") {
     if (computerSelection === "paper") {
       computerScore++;
@@ -40,15 +46,22 @@ function game(computerSelection, playerSelection) {
       return win;
     }
   }
-  if (playerSelection === computerSelection) {
+
+  if (
+    playerSelection === computerSelection &&
+    computerSelection === playerSelection
+  ) {
     return tie;
   } else {
     return "Invalid Input";
   }
 }
 
+const numOfTimes = prompt("how many times do you want to play?");
+let times = parseInt(numOfTimes);
+
 //  a for loop used to play 5 rounds of the game.
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < times; i++) {
   const playerSelection = prompt("Enter your play").toLowerCase();
   const computerSelection = computerPlay(options);
   console.log(game(computerSelection, playerSelection));
