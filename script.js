@@ -10,13 +10,18 @@ buttons.forEach((button) => {
       const playerSelection = button.id;
       const computerSelection = computerPlay(options);
       console.log(playRound(computerSelection, playerSelection));
-      console.log(`Your Score: ${playerScore}`);
-      console.log(`Computer Score: ${computerScore}`);
 
       function computerPlay(options) {
         return options[Math.floor(Math.random() * options.length)];
       }
+
+      //results
+      let gameResults = document.querySelector(".results");
+      gameResults.innerHTML = `
+        <p>Computer score: ${computerScore}</p>
+        <p>Player score: ${playerScore}</p>`;
     }
+
     function playRound(computerSelection, playerSelection) {
       let win = `YOU WIN ${playerSelection} beats ${computerSelection}`;
       let lose = `YOU LOSE! ${computerSelection} beats ${playerSelection}`;
@@ -58,13 +63,6 @@ buttons.forEach((button) => {
       } else {
         return "Invalid Input";
       }
-    }
-    if (computerScore < 5) {
-      console.log("PLAYER WINS!");
-    } else if (playerScore < 5) {
-      console.log("COMPUTER WINS!");
-    } else {
-      console.log("ENDED IN A TIE!");
     }
     game();
   });
