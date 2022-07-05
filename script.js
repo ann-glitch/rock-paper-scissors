@@ -1,66 +1,71 @@
-//helper functions
 let computerScore = 0;
 let playerScore = 0;
-let win = "YOU WIN!";
-let lose = "YOU LOSE!";
-let tie = "IT'S A TIE!";
 const options = ["rock", "paper", "scissors"];
 
-// a function that randomly returns rock, paper or scissors
-function computerPlay(options) {
-  return options[Math.floor(Math.random() * options.length)];
-}
+const buttons = document.querySelectorAll("button");
 
-// a function that takes a computer and player input and returns the winner of the round and increase scores too.
-function game(computerSelection, playerSelection) {
-  if (playerSelection === "rock") {
-    if (computerSelection === "paper") {
-      computerScore++;
-      return lose;
-    } else {
-      playerScore++;
-      return win;
-    }
-  }
-  if (playerSelection === "paper") {
-    if (computerSelection === "scissors") {
-      computerScore++;
-      return lose;
-    } else {
-      playerScore++;
-      return win;
-    }
-  }
-  if (playerSelection === "scissors") {
-    if (computerSelection === "rock") {
-      computerScore++;
-      return lose;
-    } else {
-      playerScore++;
-      return win;
-    }
-  }
-  if (playerSelection === computerSelection) {
-    return tie;
-  } else {
-    return "Invalid Input";
-  }
-}
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    function game() {
+      const playerSelection = button.id;
+      const computerSelection = computerPlay(options);
+      console.log(playRound(computerSelection, playerSelection));
+      console.log(`Your Score: ${playerScore}`);
+      console.log(`Computer Score: ${computerScore}`);
 
-//  a for loop used to play 5 rounds of the game.
-for (let i = 0; i < 5; i++) {
-  const playerSelection = prompt("Enter your play!").toLowerCase();
-  const computerSelection = computerPlay(options);
-  console.log(game(computerSelection, playerSelection));
-  console.log(`Your Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`);
-}
+      function computerPlay(options) {
+        return options[Math.floor(Math.random() * options.length)];
+      }
+    }
+    function playRound(computerSelection, playerSelection) {
+      let win = `YOU WIN ${playerSelection} beats ${computerSelection}`;
+      let lose = `YOU LOSE! ${computerSelection} beats ${playerSelection}`;
+      let tie = "IT'S A TIE! YOU BOTH CHOSE THE SAME THING";
 
-// an if statement to indicate who wins at the end.
-if (computerScore < 3) {
-  console.log("PLAYER WINS!");
-} else if (playerScore < 3) {
-  console.log("COMPUTER WINS!");
-} else {
-  console.log("ENDED IN A TIE!");
-}
+      if (playerSelection === "rock") {
+        if (computerSelection === "paper") {
+          computerScore++;
+          return lose;
+        } else {
+          playerScore++;
+          return win;
+        }
+      }
+      if (playerSelection === "paper") {
+        if (computerSelection === "scissors") {
+          computerScore++;
+          return lose;
+        } else {
+          playerScore++;
+          return win;
+        }
+      }
+      if (playerSelection === "scissors") {
+        if (computerSelection === "rock") {
+          computerScore++;
+          return lose;
+        } else {
+          playerScore++;
+          return win;
+        }
+      }
+
+      if (
+        playerSelection === computerSelection &&
+        computerSelection === playerSelection
+      ) {
+        return tie;
+      } else {
+        return "Invalid Input";
+      }
+    }
+    if (computerScore < 5) {
+      console.log("PLAYER WINS!");
+    } else if (playerScore < 5) {
+      console.log("COMPUTER WINS!");
+    } else {
+      console.log("ENDED IN A TIE!");
+    }
+    game();
+  });
+});
