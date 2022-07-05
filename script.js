@@ -1,8 +1,3 @@
-//DOM
-let rock = document.querySelector("#rock");
-let paper = document.querySelector("#paper");
-let scissors = document.querySelector("#scissors");
-
 //helper functions
 let computerScore = 0;
 let playerScore = 0;
@@ -60,7 +55,7 @@ function game(computerSelection, playerSelection) {
 const numOfTimes = prompt("how many times do you want to play?");
 let times = parseInt(numOfTimes);
 
-//  a for loop used to play 5 rounds of the game.
+//  a for loop used to play the game.
 for (let i = 0; i < times; i++) {
   const playerSelection = prompt("Enter your play").toLowerCase();
   const computerSelection = computerPlay(options);
