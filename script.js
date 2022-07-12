@@ -1,74 +1,87 @@
-//helper functions
 let computerScore = 0;
 let playerScore = 0;
-const options = ["rock", "paper", "scissors"];
+let ties = 0;
+const restartBtn = document.querySelector(".restart");
 
-// a function that randomly returns rock, paper or scissors
-function computerPlay(options) {
-  return options[Math.floor(Math.random() * options.length)];
-}
+//reloads the page for a new game.
+restartBtn.addEventListener("click", () => {
+  location.reload();
+});
 
-// a function that takes a computer and player input and returns the winner of the round and increase scores too.
-function game(computerSelection, playerSelection) {
-  let win = `YOU WIN ${playerSelection} beats ${computerSelection}`;
-  let lose = `YOU LOSE! ${computerSelection} beats ${playerSelection}`;
-  let tie = "IT'S A TIE! YOU BOTH CHOSE THE SAME THING";
+function playRound(computerSelection, playerSelection) {
+  let gameComments = document.querySelector(".comments");
+
+  if (playerScore === 5) {
+    return (gameComments.textContent =
+      "GAME OVER! PLAYER WINS, PRESS THE RESTART BUTTON TO PLAY AGAIN.");
+  } else if (computerScore === 5) {
+    return (gameComments.textContent =
+      "GAME OVER! COMPUTER WINS, PRESS THE RESTART BUTTON TO PLAY AGAIN.");
+  }
+
+  if (playerSelection === computerSelection) {
+    ++ties;
+    return (gameComments.textContent =
+      "IT'S A TIE! YOU BOTH CHOSE THE SAME THING");
+  }
 
   if (playerSelection === "rock") {
     if (computerSelection === "paper") {
       computerScore++;
-      return lose;
+      return (gameComments.textContent = `YOU LOSE! ${computerSelection} beats ${playerSelection}`);
     } else {
       playerScore++;
-      return win;
+      return (gameComments.textContent = `YOU WIN ${playerSelection} beats ${computerSelection}`);
     }
   }
   if (playerSelection === "paper") {
     if (computerSelection === "scissors") {
       computerScore++;
-      return lose;
+      return (gameComments.textContent = `YOU LOSE! ${computerSelection} beats ${playerSelection}`);
     } else {
       playerScore++;
-      return win;
+      return (gameComments.textContent = `YOU WIN ${playerSelection} beats ${computerSelection}`);
     }
   }
   if (playerSelection === "scissors") {
     if (computerSelection === "rock") {
       computerScore++;
-      return lose;
+      return (gameComments.textContent = `YOU LOSE! ${computerSelection} beats ${playerSelection}`);
     } else {
       playerScore++;
-      return win;
+      return (gameComments.textContent = `YOU WIN ${playerSelection} beats ${computerSelection}`);
     }
   }
-
-  if (
-    playerSelection === computerSelection &&
-    computerSelection === playerSelection
-  ) {
-    return tie;
-  } else {
-    return "Invalid Input";
-  }
 }
 
-const numOfTimes = prompt("how many times do you want to play?");
-let times = parseInt(numOfTimes);
-
-//  a for loop used to play the game.
-for (let i = 0; i < times; i++) {
-  const playerSelection = prompt("Enter your play").toLowerCase();
-  const computerSelection = computerPlay(options);
-  console.log(game(computerSelection, playerSelection));
-  console.log(`Your Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`);
+//a function where the computer randomly selects rock, paper or scissors.
+const options = ["rock", "paper", "scissors"];
+function computerPlay(options) {
+  return options[Math.floor(Math.random() * options.length)];
 }
 
-// an if statement to indicate who wins at the end.
-if (computerScore < playerScore) {
-  console.log("PLAYER WINS!");
-} else if (playerScore < computerScore) {
-  console.log("COMPUTER WINS!");
-} else {
-  console.log("ENDED IN A TIE!");
-}
+//player uses buttons to select its option.
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log("a button is clicked");
+
+    function game() {
+      const playerSelection = button.id;
+      const computerSelection = computerPlay(options);
+
+      //displaying the results
+      let gameResults = document.querySelector(".results");
+      gameResults.innerHTML = `
+        <p>Computer Selection: ${computerSelection}</p>
+        <p>Player Selection: ${playerSelection}</p>
+        <p>Computer score: ${computerScore}</p>
+        <p>Player score: ${playerScore}</p>
+        <p>Ties: ${ties}</p>`;
+
+      playRound(computerSelection, playerSelection);
+    }
+    game();
+  });
+});
+
