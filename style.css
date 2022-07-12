@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+body::before {
+    background-image: linear-gradient(45deg,
+    rgba(112, 115, 119, 0.87),
+    rgba(93, 98, 99, 0.911)),
+    url(https://hevalhazalkurt.com/media/images/Rock_Paper_Scissors_Python_Game.png);
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    content: '';
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+body {
+    font-family: Raleway, 'arial';
+    color: rgb(199, 199, 199);
+    font-size: 2rem;
+    align-content: center;
+    margin: 0, auto;
+    text-align: center;
+}
+
+.buttons {
+    margin: 0 auto;
+    width: 50%;
+}
+button {
+    background-color: rgba(21, 31, 58, 0.466);
+    color: white;
+    border: 1px solid black;
+    width: 30%;
+    padding: .1rem 0 .1rem 0;
+    font-size: 1.5rem;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+
+}
