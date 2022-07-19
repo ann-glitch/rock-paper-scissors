@@ -22,7 +22,7 @@ body {
     color: rgb(199, 199, 199);
     font-size: 2rem;
     align-content: center;
-    margin: 0, auto;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -40,3 +40,13 @@ button {
     font-family: Raleway, Arial, Helvetica, sans-serif;
 
 }
+
+@media only screen and (max-width: 600px) {
+    .buttons {
+     width: 100%;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+  }

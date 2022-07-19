@@ -63,7 +63,7 @@ function computerPlay(options) {
 //player uses buttons to select its option.
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (e) => {
     console.log("a button is clicked");
 
     function game() {
@@ -84,4 +84,3 @@ buttons.forEach((button) => {
     game();
   });
 });
-
